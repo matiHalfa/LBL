@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LBL עוגיות ועוגות – מאפים ביתיים</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Assistant:wght@300;400;500;600&family=Frank+Ruhl+Libre:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --blush: #F2C4C0;
+    --blush-deep: #E8A8A2;
+    --beige: #EDE0D0;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --brown: #7A5C44;
+    --text: #3D2B1F;
+    --text-soft: #7A6258;
+    --white: #FFFDF9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Assistant', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+    direction: rtl;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(250,246,240,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,169,110,0.2);
+    animation: fadeDown 0.8s ease both;
+  }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none} }
+  .nav-logo { font-family:'Frank Ruhl Libre',serif; font-size:1.6rem; font-weight:700; color:var(--gold); }
+  .nav-logo span { color:var(--blush-deep); font-style:italic; }
+  .nav-links { display:flex; gap:28px; list-style:none; }
+  .nav-links a { font-family:'Assistant',sans-serif; font-weight:500; font-size:0.9rem; color:var(--text-soft); text-decoration:none; transition:color 0.3s; }
+  .nav-links a:hover { color:var(--gold); }
+
+  /* HERO */
+  .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:80px; overflow:hidden; }
+  .hero-left { display:flex; flex-direction:column; justify-content:center; padding:80px 80px 80px 64px; animation:fadeR 1.1s 0.2s ease both; }
+  @keyframes fadeR { from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none} }
+  .hero-eyebrow { font-size:0.85rem; color:var(--gold); margin-bottom:20px; font-weight:500; }
+  .hero-title { font-family:'Frank Ruhl Libre',serif; font-size:clamp(2.6rem,5vw,4.2rem); line-height:1.18; font-weight:700; color:var(--text); margin-bottom:28px; }
+  .hero-title em { font-style:italic; color:var(--blush-deep); }
+  .hero-desc { font-size:1.08rem; font-weight:300; line-height:1.9; color:var(--text-soft); max-width:420px; margin-bottom:48px; }
+  .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary { padding:15px 36px; background:var(--gold); color:var(--white); font-family:'Assistant',sans-serif; font-size:0.92rem; font-weight:600; border:none; border-radius:60px; cursor:pointer; text-decoration:none; transition:background 0.3s,transform 0.2s,box-shadow 0.3s; box-shadow:0 6px 32px rgba(201,169,110,0.35); }
+  .btn-primary:hover { background:var(--brown); transform:translateY(-2px); }
+  .btn-outline { padding:14px 32px; background:transparent; color:var(--text); font-family:'Assistant',sans-serif; font-size:0.92rem; font-weight:500; border:1.5px solid var(--beige); border-radius:60px; cursor:pointer; text-decoration:none; transition:border-color 0.3s,color 0.3s,transform 0.2s; }
+  .btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
+  .hero-right { position:relative; overflow:hidden; animation:fadeL 1.1s 0.4s ease both; }
+  @keyframes fadeL { from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none} }
+  .hero-collage { position:absolute; inset:0; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:6px; }
+  .hero-img { background-size:cover; background-position:center; transition:transform 0.6s ease; }
+  .hero-img:hover { transform:scale(1.04); }
+  .hi-1{background-image:url('https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=600')}
+  .hi-2{background-image:url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600');grid-row:span 2}
+  .hi-3{background-image:url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600')}
+  .hero-badge { position:absolute; bottom:40px; right:-20px; background:var(--white); border-radius:50%; width:120px; height:120px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 8px 40px rgba(0,0,0,0.12); border:3px solid var(--gold-light); animation:spin 12s linear infinite; }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero-badge-inner { animation:spin 12s linear infinite reverse; text-align:center; }
+  .hero-badge .num { font-family:'Frank Ruhl Libre',serif; font-size:1.5rem; font-weight:700; color:var(--gold); }
+  .hero-badge .label { font-size:0.6rem; color:var(--text-soft); }
+
+  /* SECTIONS */
+  section { padding:100px 80px; }
+  .section-eyebrow { font-size:0.8rem; color:var(--gold); margin-bottom:14px; font-weight:600; letter-spacing:0.06em; }
+  .section-title { font-family:'Frank Ruhl Libre',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:700; line-height:1.2; color:var(--text); margin-bottom:20px; }
+  .section-title em { font-style:italic; color:var(--blush-deep); }
+  .section-desc { font-size:1.05rem; font-weight:300; line-height:1.9; color:var(--text-soft); max-width:560px; }
+
+  /* BEST SELLERS */
+  .bestsellers { background:var(--white); }
+  .bs-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:60px; }
+  .bs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .bs-card { border-radius:20px; overflow:hidden; background:var(--cream); transition:transform 0.4s,box-shadow 0.4s; cursor:pointer; }
+  .bs-card:hover { transform:translateY(-8px); box-shadow:0 20px 60px rgba(122,92,68,0.15); }
+  .bs-img { height:220px; background-size:cover; background-position:center; position:relative; }
+  .bs-badge { position:absolute; top:16px; right:16px; background:var(--gold); color:var(--white); font-size:0.72rem; font-weight:600; padding:4px 14px; border-radius:30px; }
+  .bs-info { padding:24px; }
+  .bs-name { font-family:'Frank Ruhl Libre',serif; font-size:1.15rem; font-weight:700; color:var(--text); margin-bottom:8px; }
+  .bs-desc { font-size:0.88rem; color:var(--text-soft); line-height:1.7; margin-bottom:16px; }
+  .bs-price { font-family:'Frank Ruhl Libre',serif; font-size:1.4rem; font-weight:700; color:var(--gold); }
+  .bs-price span { font-size:0.78rem; color:var(--text-soft); margin-right:4px; }
+
+  /* MENU */
+  .menu-section { background:var(--cream); }
+  .menu-tabs { display:flex; gap:8px; flex-wrap:wrap; margin:48px 0 40px; }
+  .tab-btn { padding:10px 26px; background:transparent; border:1.5px solid var(--beige); border-radius:40px; font-family:'Assistant',sans-serif; font-size:0.9rem; font-weight:500; color:var(--text-soft); cursor:pointer; transition:all 0.3s; }
+  .tab-btn.active,.tab-btn:hover { background:var(--gold); color:var(--white); border-color:var(--gold); }
+  .menu-panel { display:none; }
+  .menu-panel.active { display:block; }
+  .menu-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:14px; }
+  .menu-item { display:flex; justify-content:space-between; align-items:center; padding:18px 24px; background:var(--white); border-radius:14px; border:1px solid rgba(201,169,110,0.15); transition:all 0.3s; }
+  .menu-item:hover { border-color:var(--gold); box-shadow:0 4px 24px rgba(201,169,110,0.15); transform:translateX(-4px); }
+  .menu-item-name { font-size:1rem; font-weight:500; color:var(--text); }
+  .menu-item-note { font-size:0.75rem; color:var(--text-soft); margin-top:3px; }
+  .menu-item-price { font-family:'Frank Ruhl Libre',serif; font-size:1.1rem; font-weight:700; color:var(--gold); white-space:nowrap; margin-right:16px; }
+  .menu-cat-title { font-family:'Frank Ruhl Libre',serif; font-size:1.35rem; font-style:italic; font-weight:700; color:var(--brown); margin:36px 0 16px; padding-right:16px; border-right:3px solid var(--blush-deep); }
+
+  /* GALLERY */
+  .gallery-section { background:var(--beige); }
+  .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:200px; gap:12px; margin-top:56px; }
+  .g-item { border-radius:14px; overflow:hidden; background-size:cover; background-position:center; transition:transform 0.5s,filter 0.5s; filter:saturate(0.9); cursor:pointer; }
+  .g-item:hover { transform:scale(1.03); filter:saturate(1.15); }
+  .g-item.tall{grid-row:span 2}.g-item.wide{grid-column:span 2}
+  .gi1{background-image:url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600')}
+  .gi2{background-image:url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600')}
+  .gi3{background-image:url('https://images.unsplash.com/photo-1587668178277-295251f900ce?w=600')}
+  .gi4{background-image:url('https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=600')}
+  .gi5{background-image:url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600')}
+  .gi6{background-image:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600')}
+  .gi7{background-image:url('https://images.unsplash.com/photo-1558303116-6a8a3e48eb2d?w=600')}
+  .gi8{background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600')}
+
+  /* TESTIMONIALS */
+  .testimonials { background:var(--white); }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; }
+  .testi-card { padding:36px 32px; background:var(--cream); border-radius:20px; border:1px solid rgba(201,169,110,0.15); position:relative; transition:transform 0.3s,box-shadow 0.3s; }
+  .testi-card:hover { transform:translateY(-6px); box-shadow:0 16px 50px rgba(122,92,68,0.12); }
+  .testi-quote { font-family:'Frank Ruhl Libre',serif; font-size:4rem; line-height:1; color:var(--blush); position:absolute; top:20px; right:28px; }
+  .testi-text { font-size:0.98rem; line-height:1.85; color:var(--text); margin-top:36px; }
+  .testi-author { display:flex; align-items:center; gap:12px; margin-top:24px; }
+  .testi-avatar { width:44px; height:44px; border-radius:50%; background:var(--blush); display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-size:1rem; font-weight:700; color:var(--white); }
+  .testi-name { font-size:0.88rem; font-weight:600; color:var(--text); }
+  .testi-stars { color:var(--gold); font-size:0.85rem; }
+
+  /* ORDER */
+  .order-section { background:linear-gradient(135deg,var(--brown) 0%,#5C3D28 100%); color:var(--white); }
+  .order-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .order-left .section-eyebrow { color:var(--blush); }
+  .order-left .section-title { color:var(--white); }
+  .order-left .section-desc { color:rgba(255,255,255,0.72); max-width:400px; }
+  .order-features { margin-top:40px; display:flex; flex-direction:column; gap:18px; }
+  .order-feature { display:flex; align-items:flex-start; gap:14px; }
+  .order-feature-icon { width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+  .order-feature-text { font-size:0.9rem; color:rgba(255,255,255,0.8); line-height:1.65; }
+  .order-feature-text strong { color:var(--white); display:block; margin-bottom:2px; }
+  .order-form { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:24px; padding:48px 40px; backdrop-filter:blur(10px); }
+  .form-title { font-family:'Frank Ruhl Libre',serif; font-size:1.4rem; color:var(--white); margin-bottom:32px; }
+  .form-group { margin-bottom:18px; }
+  .form-label { display:block; font-size:0.8rem; font-weight:500; color:rgba(255,255,255,0.6); margin-bottom:8px; }
+  .form-input,.form-select,.form-textarea { width:100%; padding:13px 16px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:var(--white); font-family:'Assistant',sans-serif; font-size:0.95rem; transition:border-color 0.3s,background 0.3s; outline:none; direction:rtl; }
+  .form-input::placeholder,.form-textarea::placeholder { color:rgba(255,255,255,0.35); }
+  .form-input:focus,.form-select:focus,.form-textarea:focus { border-color:var(--blush); background:rgba(255,255,255,0.12); }
+  .form-select option { background:var(--brown); color:var(--white); }
+  .form-textarea { min-height:100px; resize:vertical; }
+  .form-submit { width:100%; padding:18px; background:var(--blush-deep); color:var(--white); border:none; border-radius:50px; cursor:pointer; font-family:'Assistant',sans-serif; font-size:0.95rem; font-weight:600; transition:background 0.3s,transform 0.2s; margin-top:8px; }
+  .form-submit:hover { background:var(--blush); transform:translateY(-2px); }
+
+  /* CONTACT */
+  .contact-section { background:var(--cream); }
+  .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .contact-cards { display:flex; flex-direction:column; gap:18px; margin-top:48px; }
+  .contact-card { display:flex; align-items:center; gap:18px; padding:22px 26px; background:var(--white); border-radius:16px; border:1px solid rgba(201,169,110,0.2); text-decoration:none; color:inherit; transition:all 0.3s; }
+  .contact-card:hover { border-color:var(--gold); transform:translateX(-6px); }
+  .contact-icon { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+  .ci-phone{background:var(--beige)}.ci-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}.ci-wa{background:#25D366}
+  .contact-card-label { font-size:0.72rem; font-weight:500; color:var(--text-soft); margin-bottom:4px; }
+  .contact-card-value { font-size:1.05rem; font-weight:600; color:var(--text); }
+  .contact-visual { position:relative; height:500px; border-radius:24px; overflow:hidden; background-image:url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=700'); background-size:cover; background-position:center; }
+  .contact-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(61,43,31,0.7) 0%,transparent 60%); display:flex; align-items:flex-end; padding:40px; }
+  .contact-quote { font-family:'Frank Ruhl Libre',serif; font-size:1.4rem; font-style:italic; color:var(--white); line-height:1.6; }
+
+  /* FOOTER */
+  footer { background:var(--text); color:rgba(255,255,255,0.5); text-align:center; padding:40px 80px; }
+  footer .footer-logo { font-family:'Frank Ruhl Libre',serif; font-size:1.8rem; color:var(--gold); margin-bottom:12px; }
+  footer p { font-size:0.85rem; }
+
+  /* FAB */
+  .whatsapp-fab { position:fixed; bottom:32px; left:32px; z-index:200; width:60px; height:60px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 30px rgba(37,211,102,0.5); text-decoration:none; font-size:1.6rem; transition:transform 0.3s,box-shadow 0.3s; animation:pulse 2.5s ease infinite; }
+  .whatsapp-fab:hover { transform:scale(1.12); }
+  @keyframes pulse{0%,100%{box-shadow:0 8px 30px rgba(37,211,102,0.5)}50%{box-shadow:0 8px 50px rgba(37,211,102,0.8)}}
+
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s,transform 0.7s; }
+  .reveal.visible { opacity:1; transform:none; }
+
+  @media(max-width:900px){
+    nav{padding:16px 20px}
+    .nav-links{gap:14px}
+    section{padding:60px 20px}
+    .hero{grid-template-columns:1fr;min-height:auto}
+    .hero-left{padding:100px 20px 40px}
+    .hero-right{height:320px}
+    .hero-collage{position:relative;height:320px}
+    .bs-grid,.testi-grid{grid-template-columns:1fr}
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    .g-item.tall{grid-row:span 1}.g-item.wide{grid-column:span 1}
+    .order-inner,.contact-inner{grid-template-columns:1fr;gap:40px}
+    .contact-visual{display:none}
+    .bs-header{flex-direction:column;align-items:flex-start;gap:20px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">LBL <span>עוגות</span></div>
+  <ul class="nav-links">
+    <li><a href="#bestsellers">מומלצים</a></li>
+    <li><a href="#menu">תפריט</a></li>
+    <li><a href="#gallery">גלריה</a></li>
+    <li><a href="#order">הזמנה</a></li>
+    <li><a href="#contact">צור קשר</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">עשוי בבית · מהלב · עם אהבה</div>
+    <h1 class="hero-title">עוגות ומאפים <em>מיוחדים</em><br>לכל רגע מתוק</h1>
+    <p class="hero-desc">כל פינוק מוכן מאפס מחומרים הכי טובים. מעוגות יום הולדת מפוארות ועד קאפקייקס ועוגיות יומיומיות — הכל מוכן עם לב ובשביל שתהנו.</p>
+    <div class="hero-btns">
+      <a href="#order" class="btn-primary">הזמיני עכשיו</a>
+      <a href="#menu" class="btn-outline">לתפריט המלא</a>
+      <a href="#contact" class="btn-outline">צרי קשר</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-collage">
+      <div class="hero-img hi-1"></div>
+      <div class="hero-img hi-2" style="grid-row:span 2"></div>
+      <div class="hero-img hi-3"></div>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-inner">
+        <div class="num">100%</div>
+        <div class="label">ביתי</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bestsellers" id="bestsellers">
+  <div class="bs-header">
+    <div>
+      <div class="section-eyebrow">הנמכרים ביותר</div>
+      <h2 class="section-title">המועדפים שלנו</h2>
+    </div>
+    <a href="#menu" class="btn-outline">לתפריט המלא</a>
+  </div>
+  <div class="bs-grid">
+    <div class="bs-card reveal">
+      <div class="bs-img" style="background-image:url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600')">
+        <div class="bs-badge">⭐ הכי נמכר</div>
+      </div>
+      <div class="bs-info">
+        <div class="bs-name">עוגת יום הולדת מעוצבת</div>
+        <div class="bs-desc">עיצוב לפי בחירתך — כל טעם, כל נושא. מוכנה טרייה ליומך המיוחד.</div>
+        <div class="bs-price">₪300–380 <span>הזמנה מיוחדת</span></div>
+      </div>
+    </div>
+    <div class="bs-card reveal">
+      <div class="bs-img" style="background-image:url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600')">
+        <div class="bs-badge">❤️ הכי אהוב</div>
+      </div>
+      <div class="bs-info">
+        <div class="bs-name">מגוגלות קינדר (20 יחידות)</div>
+        <div class="bs-desc">מגוגלות עסיסיות עם ממלוי קינדר. בחרי 2 טעמים. מושלם למסיבות ואירועים.</div>
+        <div class="bs-price">₪80 <span>לתבנית</span></div>
+      </div>
+    </div>
+    <div class="bs-card reveal">
+      <div class="bs-img" style="background-image:url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600')">
+        <div class="bs-badge">🍪 מנצחות</div>
+      </div>
+      <div class="bs-info">
+        <div class="bs-name">קינוחי לוטוס בכוסות (9 כוסות)</div>
+        <div class="bs-desc">עוגיות לוטוס עשירות וחמאתיות בכוסות אישיות. נמסות בפה.</div>
+        <div class="bs-price">₪70 <span>לסט</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="section-eyebrow">תפריט מלא</div>
+  <h2 class="section-title">כל מה ש<em>אנחנו אופות</em></h2>
+  <p class="section-desc">כל הפריטים מוכנים טריים לפי הזמנה. יש כמות מינימום. ניתן לבקש התאמות אישיות.</p>
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="showTab('cakes',event)">עוגיות ומאפים</button>
+    <button class="tab-btn" onclick="showTab('cupcakes',event)">מגוגלות</button>
+    <button class="tab-btn" onclick="showTab('cookies',event)">קינוחי מוס בכוסות</button>
+    <button class="tab-btn" onclick="showTab('specials',event)">המיוחדים</button>
+  </div>
+
+  <div class="menu-panel active" id="tab-cakes">
+    <div class="menu-cat-title">עוגיות ומאפים (כ-15 עוגיות במארז)</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">אלפחורס</div></div><div class="menu-item-price">₪60</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">אמסטרדם</div></div><div class="menu-item-price">₪60</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">בראוניז</div></div><div class="menu-item-price">₪50</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">שוקולד צ'יפס</div></div><div class="menu-item-price">₪50</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">ספינג' / מסוכרים</div><div class="menu-item-note">כ-30–50 במארז</div></div><div class="menu-item-price">₪100</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">פחזניות</div></div><div class="menu-item-price">₪70</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">פחזניות קראמבל</div><div class="menu-item-note">פיסטוק / קוקוס / פירות יער</div></div><div class="menu-item-price">₪85</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">כדורי שוקולד</div></div><div class="menu-item-price">₪50</div></div>
+    </div>
+    <div class="menu-cat-title">עוגות</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">עוגת שמרים</div></div><div class="menu-item-price">₪60</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">עוגת יום הולדת מעוצבת</div><div class="menu-item-note">עיצוב אישי לפי בחירה</div></div><div class="menu-item-price">₪300–380</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">עוגת מוס לוטוס</div></div><div class="menu-item-price">₪250</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">עוגת גן</div></div><div class="menu-item-price">₪150–250</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">סמאש קייק</div></div><div class="menu-item-price">₪280</div></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" id="tab-cupcakes">
+    <div class="menu-cat-title">מגוגלות (כ-20 מגוגלות, 2 טעמים לבחירה)</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">קינדר</div></div><div class="menu-item-price">₪80</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">פררו רושה ונוגי לוז</div></div><div class="menu-item-price">₪80</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">הרשית ושברי עוגיות</div></div><div class="menu-item-price">₪80</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">קורנפלקס</div></div><div class="menu-item-price">₪80</div></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" id="tab-cookies">
+    <div class="menu-cat-title">קינוחי מוס בכוסות (כ-9 כוסות במארז)</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">לוטוס</div></div><div class="menu-item-price">₪70</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">אוראו</div></div><div class="menu-item-price">₪70</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">מרשמלו</div></div><div class="menu-item-price">₪70</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">פירות יער</div></div><div class="menu-item-price">₪70</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">פררו רושה</div></div><div class="menu-item-price">₪70</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">פיסטוק</div></div><div class="menu-item-price">₪70</div></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" id="tab-specials">
+    <div class="menu-cat-title">המיוחדים</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">לב מתנפס</div><div class="menu-item-note">אלפחורס / אמסטרדם / פיסטוק</div></div><div class="menu-item-price">₪200</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">גביעי קדאיף (12)</div><div class="menu-item-note">ממלוי פיסטוק</div></div><div class="menu-item-price">₪80</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">מוס משפחתי</div><div class="menu-item-note">מנה ל-4 — ציפוי פירות טריים</div></div><div class="menu-item-price">₪180</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">פאי אישה (5 יחידות)</div><div class="menu-item-note">אגוזים / פירות — אפוי טרי</div></div><div class="menu-item-price">₪40</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="section-eyebrow">גלריה מתוקה</div>
+  <h2 class="section-title">עשוי ב<em>אהבה</em></h2>
+  <div class="gallery-grid">
+    <div class="g-item gi1 tall"></div>
+    <div class="g-item gi2"></div>
+    <div class="g-item gi3"></div>
+    <div class="g-item gi4 wide"></div>
+    <div class="g-item gi5 tall"></div>
+    <div class="g-item gi6"></div>
+    <div class="g-item gi7"></div>
+    <div class="g-item gi8 wide"></div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="section-eyebrow">לקוחות מרוצות</div>
+  <h2 class="section-title">מה <em>אומרות עלינו</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">הזמנתי עוגת יום הולדת מותאמת אישית לבת שלי — כולם נשארו פעורי פה. העיצוב היה מושלם והטעם אפילו יותר טוב ממה שנראה!</div>
+      <div class="testi-author">
+        <div class="testi-avatar">מ</div>
+        <div><div class="testi-name">מיכל ר'</div><div class="testi-stars">★★★★★</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">כוסות הלוטוס היו הצלחה מטורפת באירוע שלנו. כל כך טריות ומדהימות — כולם שאלו מאיפה. כבר הזמנתי שוב לאירוע הבא!</div>
+      <div class="testi-author">
+        <div class="testi-avatar">י</div>
+        <div><div class="testi-name">יעל כ'</div><div class="testi-stars">★★★★★</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-text">המגוגלות קינדר פשוט אלוהיות. LBL היא הבחירה שלי לכל אירוע — אמינה, יפה, ותמיד עם המון אהבה. ממליצה בחום!</div>
+      <div class="testi-author">
+        <div class="testi-avatar">נ</div>
+        <div><div class="testi-name">נועה ש'</div><div class="testi-stars">★★★★★</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="order-section" id="order">
+  <div class="order-inner">
+    <div class="order-left">
+      <div class="section-eyebrow">שלחי הזמנה</div>
+      <h2 class="section-title" style="color:var(--white)">בואי נכין משהו <em style="color:var(--blush)">טעים</em> ביחד</h2>
+      <p class="section-desc">מלאי את הטופס ונחזור אלייך תוך 24 שעות לאישור ההזמנה ודיון בפרטים.</p>
+      <div class="order-features">
+        <div class="order-feature">
+          <div class="order-feature-icon">🎂</div>
+          <div class="order-feature-text"><strong>עיצובים מותאמים אישית</strong>כל נושא, כל אירוע — אנחנו מממשות את החלום שלך.</div>
+        </div>
+        <div class="order-feature">
+          <div class="order-feature-icon">📦</div>
+          <div class="order-feature-text"><strong>מוכן טרי להזמנה</strong>כל פריט נאפה טרי — אף פעם לא קפוא, תמיד מושלם.</div>
+        </div>
+        <div class="order-feature">
+          <div class="order-feature-icon">💬</div>
+          <div class="order-feature-text"><strong>נוח בווטסאפ</strong>מעדיפה לשוחח? שלחי לנו הודעה ישירה בווטסאפ.</div>
+        </div>
+      </div>
+    </div>
+    <div class="order-form">
+      <div class="form-title">בקשת הזמנה</div>
+      <div class="form-group">
+        <label class="form-label">שם מלא</label>
+        <input type="text" class="form-input" placeholder="לדוגמה: שרה כהן">
+      </div>
+      <div class="form-group">
+        <label class="form-label">מספר טלפון</label>
+        <input type="tel" class="form-input" placeholder="לדוגמה: 052-000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">מוצר</label>
+        <select class="form-select form-input">
+          <option value="">בחרי מוצר...</option>
+          <option>עוגת יום הולדת מעוצבת</option>
+          <option>מגוגלות (תבנית 20)</option>
+          <option>קינוחי מוס בכוסות</option>
+          <option>אלפחורס / אמסטרדם</option>
+          <option>בראוניז</option>
+          <option>פחזניות / קראמבל</option>
+          <option>הזמנה מיוחדת / שולחן אירוע</option>
+          <option>אחר</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">בקשות מיוחדות / פרטים</label>
+        <textarea class="form-textarea form-input" placeholder="נושא, תאריך, כמות, העדפות..."></textarea>
+      </div>
+      <button class="form-submit" onclick="sendWhatsApp()">שלחי בווטסאפ 💬</button>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow">צרי קשר</div>
+      <h2 class="section-title">נשמח <em>לשמוע ממך</em></h2>
+      <p class="section-desc">יש שאלות? רוצה לבצע הזמנה? פני אלינו ונכין יחד משהו מתוק.</p>
+      <div class="contact-cards">
+        <a href="tel:0522263576" class="contact-card">
+          <div class="contact-icon ci-phone">📞</div>
+          <div><div class="contact-card-label">טלפון</div><div class="contact-card-value">052-2263576</div></div>
+        </a>
+        <a href="https://instagram.com/liat576" target="_blank" class="contact-card">
+          <div class="contact-icon ci-ig" style="color:white;font-size:1.2rem">📸</div>
+          <div><div class="contact-card-label">אינסטגרם</div><div class="contact-card-value">@liat576</div></div>
+        </a>
+        <a href="https://wa.me/9720522263576" target="_blank" class="contact-card">
+          <div class="contact-icon ci-wa" style="color:white;font-size:1.3rem">💬</div>
+          <div><div class="contact-card-label">ווטסאפ</div><div class="contact-card-value">שלחי הודעה עכשיו</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-visual">
+      <div class="contact-overlay">
+        <div class="contact-quote">"כל חגיגה מגיעה לעוגה שעשויה עם אהבה."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">LBL עוגות ומתוקים</div>
+  <p>עשוי באהבה · ליאת בן לולו · @liat576 · 052-2263576</p>
+  <p style="margin-top:8px;font-size:0.75rem;">© 2026 LBL עוגות ומתוקים. כל הזכויות שמורות.</p>
+</footer>
+
+<a href="https://wa.me/9720522263576" target="_blank" class="whatsapp-fab" title="שלחי הודעה בווטסאפ">💬</a>
+
+<script>
+  function showTab(id, e) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    e.target.classList.add('active');
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  function sendWhatsApp() {
+    const name = document.querySelector('input[type="text"]').value || 'לקוחה';
+    const phone = document.querySelector('input[type="tel"]').value || '';
+    const product = document.querySelector('select').value || 'לא צוין';
+    const notes = document.querySelector('textarea').value || '';
+    const msg = encodeURIComponent(`שלום LBL עוגות! 🍰\n\nשם: ${name}\nטלפון: ${phone}\nמוצר: ${product}\nפרטים: ${notes}`);
+    window.open(`https://wa.me/9720522263576?text=${msg}`, '_blank');
+  }
+</script>
+</body>
+</html>
